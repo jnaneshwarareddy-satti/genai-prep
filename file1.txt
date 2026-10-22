@@ -1,3 +1,0 @@
-hi
-added by me
-branch changed to newfeature
