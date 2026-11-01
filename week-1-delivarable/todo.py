@@ -10,7 +10,7 @@ def list_tasks(lst):
 
 
 def add_tasks(tasks, lst):
-    id = len(lst)
+    id = int(max(lst))
     status = "incomplete"
     for task in tasks:
         id = id + 1
