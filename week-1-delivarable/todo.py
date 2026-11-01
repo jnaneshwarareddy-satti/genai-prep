@@ -23,8 +23,11 @@ def add_tasks(tasks, lst):
 
 def remove_tasks(id, lst):
     for i in id:
-        lst.pop(i, None)
-    print(f"popped {id} successfully")
+        res = lst.pop(i, None)
+        if res != None:
+            print(f"popped {id} successfully")
+        else:
+            print("task not found")
 
 
 def change_status(id, lst):
@@ -35,11 +38,12 @@ def change_status(id, lst):
 
 def main():
     if os.path.isfile("list.json"):
-        with open("list.json", "r") as f:
-            lst = json.load(f)
+        with open("list.json", "r") as file:
+            lst = json.load(file)
     else:
-        print("The json file does not exist.")
-        return None
+        json_string = {}
+        with open("list.json", "w") as file:
+            json.dump(json_string, file)
     tasks = []
     if len(sys.argv) > 1:
         funct = sys.argv[1]
@@ -48,15 +52,15 @@ def main():
                 tasks.append(sys.argv[i])
         match funct:
             case "list_tasks":
-                list_tasks(tasks, lst)
+                list_tasks(lst)
             case "add_tasks":
                 add_tasks(tasks, lst)
-            case "list_tasks":
-                list_tasks(tasks, lst)
             case "change_status":
-                change_status(tasks, lst)
+                task_id = tasks
+                change_status(task_id, lst)
             case "remove_tasks":
-                remove_tasks(lst)
+                task_id = tasks
+                remove_tasks(task_id, lst)
 
         if os.path.isfile("list.json"):
             with open("list.json", "w") as f:

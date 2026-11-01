@@ -1,0 +1,7 @@
+1. python
+2.rest api
+3.llm
+4.rag
+5.fastApi
+6.prostgresql + vector db
+7.done
